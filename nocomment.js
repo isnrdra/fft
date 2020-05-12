@@ -132,11 +132,11 @@ const CommentAndLike = async function(session, accountId, text){
     //ngeComment(session, result[0].params.id, text),
     ngeLike(session, result[0].params.id)
     ]
-    const [Follow,Comment,Like] = await Promise.all(task);
+    const [Follow,Like] = await Promise.all(task);
     const printFollow = Follow ? chalk`{green Follow}` : chalk`{red Follow}`;
     //const printComment = Comment ? chalk`{green Comment}` : chalk`{red Comment}`;
     const printLike = Like ? chalk`{green Like}` : chalk`{red Like}`;
-    return chalk`{bold.green ${printFollow},${printComment},${printLike} [${text}]}`;
+    return chalk`{bold.green ${printFollow},${printLike}}`;
   }
   return chalk`{bold.white Timeline Kosong (SKIPPED)}`
 };
