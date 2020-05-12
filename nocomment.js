@@ -135,8 +135,9 @@ const CommentAndLike = async function(session, accountId, text){
     const [Follow,Comment,Like] = await Promise.all(task);
     const printFollow = Follow ? chalk`{green Follow}` : chalk`{red Follow}`;
     //const printComment = Comment ? chalk`{green Comment}` : chalk`{red Comment}`;
-    const printLike = Like ? chalk`{green Like}` : chalk`{red Like}`;
-    return chalk`{bold.green ${printFollow},${printComment},${printLike} [${text}]}`;
+    const printLike = Like ? chalk`{red Like}` : chalk`{green Like}`;
+    //return chalk`{bold.green ${printFollow},${printComment},${printLike} [${text}]}`;
+	return chalk`{bold.green ${printFollow},${printLike}}`;
   }
   return chalk`{bold.white Timeline Kosong (SKIPPED)}`
 };
@@ -182,7 +183,7 @@ const Excute = async function(User, TargetUsername, Sleep){
           if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
 	//    var Text = fs.readFileSync('komen.txt', 'utf8').split('|');
     //        var ranText = Text[Math.floor(Math.random() * Text.length)];
-	    var iki = ''+akun.params.username+' '+ranText;
+	    var iki = ''+akun.params.username+;
             const ngeDo = await CommentAndLike(doLogin.session, akun.id, iki)
             console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]}${akun.params.username} => ${ngeDo}`)
           } else {
